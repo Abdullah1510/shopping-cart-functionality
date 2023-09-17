@@ -6,14 +6,15 @@ const initialState = {
     cartList: [],
     total: 0
 }
-
 const CartContext = createContext(initialState);
 
-export const CartProvider = ({children}) => {
+export const CartProvider = ({ children }) => {
+
     const [state, dispatch] = useReducer(cartReducer, initialState);
 
     const addToCart = (product) => {
         const updatedCartList = state.cartList.concat(product);
+
         updateTotal(updatedCartList);
 
         dispatch({
@@ -54,6 +55,7 @@ export const CartProvider = ({children}) => {
         addToCart,
         removeFromCart
     };
+
 
     return (
         <CartContext.Provider value={value}>
